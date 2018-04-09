@@ -1,9 +1,10 @@
 /*
 Sparse Matrix.
-
+:Most of the matrix is filled with zeros.(Almost Empty)
 */
 
 #include <stdio.h>
+#include <stdlib.h> //using malloc
 
 typedef struct _sparse{
     int col;
