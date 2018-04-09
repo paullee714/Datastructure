@@ -8,14 +8,14 @@ Using calloc, you don't need initialize the matrix.
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct ma{
+typedef struct Matrix{
     int row,col,value;
-}M;
+}Matrix;
 
-typedef struct mb{
+typedef struct SP_Matirx{
     int rows, cols, terms;
-    M data[9];
-}MA;
+    Matrix data[9];
+}Sprsmtrx;
 
 
 void Mat_init(int** ary, int row, int col){
@@ -26,8 +26,8 @@ void Mat_init(int** ary, int row, int col){
     }
 }
 int main(void){
-    MA m={3,3,4, {{0,2,2}, {1,0,1}, {2,1,3},{2,2,8}}};
-    MA s={3,3,3, {{0,2,3}, {1,0,2}, {2,2,8}}};
+    Sprsmtrx m={3,3,4, {{0,2,2}, {1,0,1}, {2,1,3},{2,2,8}}};
+    Sprsmtrx s={3,3,3, {{0,2,3}, {1,0,2}, {2,2,8}}};
 
     int **ap,**bp,**cp;
     int i , j ,c;
@@ -62,7 +62,7 @@ int main(void){
     }
 
     //Sparse Matrix Summation
-    printf(">>>>>>>>>>>Sparse Matrix Summation\n");
+    printf(">>>>>>>>>>>Sparse Matrix Summation>>>>>>>>>>>>>>\n");
     for(i = 0 ; i<m.rows;i++){
         for(j=0;j<s.cols;j++){
             cp[i][j]=ap[i][j]+bp[i][j];
@@ -73,22 +73,18 @@ int main(void){
             printf("[%2d]",ap[i][j]);
         }
         printf("    +    ");
-        
         for(j = 0 ; j<s.cols;j++){
             printf("[%2d]",bp[i][j]);
         }
-
         printf("    =    ");
-
-
         for(j = 0 ; j<m.cols;j++){
             printf("[%2d]",cp[i][j]);
         }
         printf("\n");
     }
-    
+
     // Sparse Matrix Multiplication
-    printf(">>>>>>>>>>>Sparse Matrix Multiplication\n");
+    printf(">>>>>>>>>>>Sparse Matrix Multiplication>>>>>>>>>>>>>\n");
     Mat_init(cp,m.rows,m.cols);
     
     for(i = 0 ; i<m.rows;i++){
@@ -107,10 +103,7 @@ int main(void){
         for(j = 0 ; j<s.cols;j++){
             printf("[%2d]",bp[i][j]);
         }
-
         printf("    =    ");
-
-
         for(j = 0 ; j<m.cols;j++){
             printf("[%2d]",cp[i][j]);
         }
