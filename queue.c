@@ -1,122 +1,60 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
 
-#define MAX 6
+int queue[SIZE];
+int top = 0;
 
-int intArray[MAX];
-int front = 0;
-int rear = -1;
-int itemCount = 0;
-
-int peek() {
-   return intArray[front];
-}
-
-bool isEmpty() {
-   return itemCount == 0;
-}
-
-bool isFull() {
-   return itemCount == MAX;
-}
-
-int size() {
-   return itemCount;
-}  
-
-void insert(int data) {
-
-   if(!isFull()) {
-	
-      if(rear == MAX-1) {
-         rear = -1;            
-      }       
-
-      intArray[++rear] = data;
-      itemCount++;
-   }
-   printf(" < input %d > \n",data);
-}
-
-int removeData() {
-   int data = intArray[front++];
-	
-   if(front == MAX) {
-      front = 0;
-   }
-	
-   itemCount--;
-   return data;  
-}
+void queue_push();
+void queue_pop();
+void queue_print();
 
 int main() {
-   /* insert 5 items */
-   insert(3);
-   insert(5);
-   insert(9);
-   insert(1);
-   insert(12);
+	int input;
+	while (1){
+		printf("\n\n1.Push (max 5) \n2.pop\n");
+		scanf("%d", &input);
+		switch (input) {
+		case 1:queue_push(); break;
+		case 2:queue_pop(); break;
+		} 
+		queue_print();
+	}
+    return 0;
+}
 
-   // front : 0
-   // rear  : 4
-   // ------------------
-   // index : 0 1 2 3 4 
-   // ------------------
-   // queue : 3 5 9 1 12
-   insert(15);
+void queue_push() {
+	int n, i;
+	if (top < SIZE){
+		top++;
+		for (i = top - 1; i > 0; i--) {
+			queue[i] = queue[i - 1];
+		}
+		printf("\ninput : ");
+		scanf("%d", &n);
+		queue[0] = n;
+	}
+	else{
+		printf("큐 오버 플로우\n");
+	}
 
-   // front : 0
-   // rear  : 5
-   // ---------------------
-   // index : 0 1 2 3 4  5 
-   // ---------------------
-   // queue : 3 5 9 1 12 15
-	
-   if(isFull()){
-      printf("Queue is full!\n");   
-   }
+}
 
-   // remove one item 
-   int num = removeData();
-	
-   printf("Element removed: %d\n",num);
-   // front : 1
-   // rear  : 5
-   // -------------------
-   // index : 1 2 3 4  5
-   // -------------------
-   // queue : 5 9 1 12 15
 
-   // insert more items
-   insert(16);
+void queue_pop() {
+	if (top == 0) {
+		printf("Empty\n\n");
+	}
+	else
+	{
+		top--;
+		printf("pop : %d\n\n", queue[top]);
+	}
+}
 
-   // front : 1
-   // rear  : -1
-   // ----------------------
-   // index : 0  1 2 3 4  5
-   // ----------------------
-   // queue : 16 5 9 1 12 15
 
-   // As queue is full, elements will not be inserted. 
-   insert(17);
-   insert(18);
-
-   // ----------------------
-   // index : 0  1 2 3 4  5
-   // ----------------------
-   // queue : 16 5 9 1 12 15
-   printf("Element at front: %d\n",peek());
-
-   printf("----------------------\n");
-   printf("index : 5 4 3 2  1  0\n");
-   printf("----------------------\n");
-   printf("Queue:  ");
-	
-   while(!isEmpty()) {
-      int n = removeData();           
-      printf("%d ",n);
-   }
-   printf("\n"); 
+void queue_print() {
+	int i;
+	for (i = 0; i < top; i++)
+		printf("%d ", queue[i]);
 }
