@@ -5,8 +5,8 @@
 int queue[SIZE];
 int top = 0;
 
-void queue_push();
-void queue_pop();
+void queue_enqueue();
+void queue_dequeue();
 void queue_print();
 
 int main() {
@@ -15,15 +15,15 @@ int main() {
 		printf("\n\n1.Push (max 5) \n2.pop\n");
 		scanf("%d", &input);
 		switch (input) {
-		case 1:queue_push(); break;
-		case 2:queue_pop(); break;
+		case 1:queue_enqueue(); break;
+		case 2:queue_dequeue(); break;
 		} 
 		queue_print();
 	}
     return 0;
 }
 
-void queue_push() {
+void queue_enqueue() {
 	int n, i;
 	if (top < SIZE){
 		top++;
@@ -41,7 +41,7 @@ void queue_push() {
 }
 
 
-void queue_pop() {
+void queue_dequeue() {
 	if (top == 0) {
 		printf("Empty\n\n");
 	}
