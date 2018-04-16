@@ -15,8 +15,12 @@ int main() {
 		printf("\n\n1.Push (max 5) \n2.pop\n");
 		scanf("%d", &input);
 		switch (input) {
-		case 1:queue_enqueue(); break;
-		case 2:queue_dequeue(); break;
+		case 1:
+		queue_enqueue(); 
+		break;
+		case 2:
+		queue_dequeue(); 
+		break;
 		} 
 		queue_print();
 	}
