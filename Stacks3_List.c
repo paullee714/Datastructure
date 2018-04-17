@@ -46,7 +46,12 @@ struct node* pop(struct node *head,int *element)
 */
 int empty(struct node* head)
 {
-    return head == NULL ? 1 : 0;
+    if(head == NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
  
 /*
