@@ -77,7 +77,7 @@ int check_matching(char *in){
     char ch; // character from in
     char open_ch; // character from stack
     int i;
-    int n = (int) strlen(in);
+    int n = (int)strlen(in);
     InitStack(&s);
     
     for (i=0; i<n; i++) {
