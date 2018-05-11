@@ -7,7 +7,7 @@ typedef struct Node{
     struct Node *Next;
 }Node;
 
-typedef struct Deque{
+typedef struct{
     Node *header;
     Node *tailer;
 }Deque;
@@ -92,3 +92,12 @@ void printing(Deque *Target_Deque){
     printf("\n");
 }
 
+int main(void){
+    Deque dq;
+    init_Deque(&dq);
+    
+    Input_Head(&dq,1);
+    Input_Head(&dq,3);
+    printing(&dq);
+
+}

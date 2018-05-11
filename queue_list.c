@@ -16,7 +16,8 @@ void error(char *message){
     fprintf(stderr,"%s\n",message);
 }
 void init(QueueType *q){
-    q->front = q->rear = NULL;
+    q->front =NULL;
+    q->rear = NULL;
 }
 int is_empty(QueueType *q){
     return (q->front == NULL);
