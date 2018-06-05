@@ -66,6 +66,27 @@ void remove_element(int key);
 void rehash();
 void init_array();
  
+ /*
+ *This function finds the given key in the Linked List
+ *Returns it's index
+ *Returns -1 in case key is not present
+*/
+int find(struct node *list, int key)
+{
+	int retval = 0;
+	struct node *temp = list;
+	while (temp != NULL) 
+        {
+		if (temp->key == key)
+                {
+			return retval;
+		}
+  		temp = temp->next;
+		retval++;
+	}
+	return -1;
+ 
+}
 void insert(int key, int value)
 {
   	float n = 0.0;     
@@ -184,27 +205,7 @@ void rehash()
 	temp = NULL;
 }
  
-/*
- *This function finds the given key in the Linked List
- *Returns it's index
- *Returns -1 in case key is not present
-*/
-int find(struct node *list, int key)
-{
-	int retval = 0;
-	struct node *temp = list;
-	while (temp != NULL) 
-        {
-		if (temp->key == key)
-                {
-			return retval;
-		}
-  		temp = temp->next;
-		retval++;
-	}
-	return -1;
- 
-}
+
  
 /* Returns the node (Linked List item) located at given find_index  */
 struct node* get_element(struct node *list, int find_index)
